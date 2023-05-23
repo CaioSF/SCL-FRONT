@@ -75,14 +75,22 @@ function CadastroAutor() {
   }
 
   async function buscar() {
-    await axios.get(`${baseURL}/${idParam}`).then((response) => {
+    try { 
+      await axios.get(`${baseURL}/${idParam}`).then((response) => {
       setDados(response.data);
     });
+   
     setId(dados.id);
     setNome(dados.nome);
     
     setEmail(dados.email);
     setDataNascimento(dados.dataNascimento);
+  } catch (error) {
+    console.error(error);
+    if  (error.response && error.response.status === 400) {
+      console.log("Erro 400: Solicitação inválida.");
+  }
+}
   }
 
   useEffect(() => {

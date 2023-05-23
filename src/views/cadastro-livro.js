@@ -75,18 +75,29 @@ function CadastroLivro() {
   }
 
   async function buscar() {
-    await axios.get(`${baseURL}/${idParam}`).then((response) => {
-      setDados(response.data);
-    });
-    setId(dados.id);
-    setNome(dados.nome);
-    setAutor(dados.autor);
-    setEditora(dados.editora);
-    setAnoPublicacao(dados.anoPublicacao);
+    try {
+      await axios.get(`${baseURL}/${idParam}`).then((response)=>{
+        setDados(response.data);
+
+      });
+      
+    
+    
+      setId(dados.id);
+      setNome(dados.nome);
+      setAutor(dados.autor);
+      setEditora(dados.editora);
+      setAnoPublicacao(dados.anoPublicacao);
+    } catch (error) {
+      console.error(error)
+      if (error.response && error.response.status === 400){
+        console.log("Solicitação de objeto inválida")
+    }
+  }
   }
 
   useEffect(() => {
-    buscar(); // eslint-disable-next-line
+    buscar(); 
   }, [id]);
 
   if (!dados) return null;
