@@ -77,8 +77,8 @@ function ListagemAutores() {
                 <thead>
                   <tr>
                     <th scope='col'>Nome</th>
+                    <th scope='col'>Nacionalidade</th>
                     <th scope='col'>Email</th>
-                    <th scope='col'>dataNascimento</th>
                     <th scope='col'>Ações</th>
                   </tr>
                 </thead>
@@ -86,8 +86,8 @@ function ListagemAutores() {
                   {dados.map((dado) => (
                     <tr key={dado.id}>
                       <td>{dado.nome}</td>
+                      <td>{dado.nacionalidade}</td>
                       <td>{dado.email}</td>
-                      <td>{dado.dataNascimento}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                           <IconButton
@@ -107,7 +107,7 @@ function ListagemAutores() {
                     </tr>
                   ))}
                 </tbody>
-              </table>{' '}
+              </table>
             </div>
           </div>
         </div>

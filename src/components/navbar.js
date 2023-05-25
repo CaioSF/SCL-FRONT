@@ -33,18 +33,13 @@ function Navbar(props) {
           </ul>
           <ul className='navbar-nav'>
             <NavbarItem render='true' href='/listagem-livros' label='Livros' />
+          </ul>   
+          <ul className='navbar-nav'>
+            <NavbarItem render='true' href='#' label='Entrar' />
           </ul>
-              <li class="nav-item dropdown">
-              <a class="nav-item"  role="button" data-bs-toggle="dropdown" >
-                &#9863;
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Login</a></li>
-                <li><a class="dropdown-item" href="#">Cadastro </a></li>
-                <li><a class="dropdown-item" href="#">Ajuda</a></li>
-              </ul>
-            </li>
-            
+          <ul className='navbar-nav'>
+            <NavbarItem render='true' href='#' label='Sair' />
+          </ul>         
           
         </div>
       </div>

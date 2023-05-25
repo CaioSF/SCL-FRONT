@@ -22,8 +22,8 @@ function CadastroAutor() {
 
   const [id, setId] = useState('');
   const [nome, setNome] = useState('');
+  const [nacionalidade, setNacionalidade] = useState('');
   const [email, setEmail] = useState('');
-  const [dataNascimento, setDataNascimento] = useState('');
   
 
   const [dados, setDados] = React.useState([]);
@@ -32,20 +32,20 @@ function CadastroAutor() {
     if (idParam == null) {
       setId('');
       setNome('');
-      setDataNascimento('');
       setEmail('');
+      setNacionalidade('');
       
     } else {
       setId(dados.id);
       setNome(dados.nome);
-      setDataNascimento(dados.dataNascimento);
       setEmail(dados.email);
+      setNacionalidade(dados.nacionalidade);
    
     }
   }
 
   async function salvar() {
-    let data = { id, nome,dataNascimento, email };
+    let data = { id, nome, email, nacionalidade };
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -83,8 +83,8 @@ function CadastroAutor() {
     setId(dados.id);
     setNome(dados.nome);
     
+    setNacionalidade(dados.nacionalidade);
     setEmail(dados.email);
-    setDataNascimento(dados.dataNascimento);
   } catch (error) {
     console.error(error);
     if  (error.response && error.response.status === 400) {
@@ -115,26 +115,26 @@ function CadastroAutor() {
                 />
              
               </FormGroup>
-              <FormGroup label='Email: *' htmlFor='inputEmail'>
+              <FormGroup label='Nacionalidade: *' htmlFor='inputNacionalidade'>
                 <input
                   type='text'
+                  id='inputNacionalidade'
+                  value={nacionalidade}
+                  className='form-control'
+                  name='nacionalidade'
+                  onChange={(e) => setNacionalidade(e.target.value)}
+                />
+              </FormGroup>
+              <FormGroup label='Email: *' htmlFor='inputEmail'>
+                <input
+                  type='email'
                   id='inputEmail'
                   value={email}
                   className='form-control'
                   name='email'
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                 </FormGroup>
-              <FormGroup label='Data de Nascimento: *' htmlFor='inputDataNascimento'>
-                <input
-                  type='date'
-                  id='inputData'
-                  value={dataNascimento}
-                  className='form-control'
-                  name='dataNascimento'
-                  onChange={(e) => setDataNascimento(e.target.value)}
-                />
-                </FormGroup>
+              </FormGroup>
               <Stack spacing={1} padding={1} direction='row'>
                 <button
                   onClick={salvar}

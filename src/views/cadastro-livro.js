@@ -25,6 +25,7 @@ function CadastroLivro() {
   const [autor, setAutor] = useState('');
   const [editora, setEditora] = useState('');
   const [anoPublicacao, setAnoPublicacao] = useState('');
+  const [numeroPaginas, setNumerPaginas] = useState('');
 
   const [dados, setDados] = React.useState([]);
 
@@ -35,17 +36,19 @@ function CadastroLivro() {
       setAutor('');
       setEditora('');
       setAnoPublicacao('');
+      setNumerPaginas('');
     } else {
       setId(dados.id);
       setNome(dados.nome);
       setAutor(dados.autor);
       setEditora(dados.editora);
       setAnoPublicacao(dados.anoPublicacao);
+      setNumerPaginas(dados.numeroPaginas);
     }
   }
 
   async function salvar() {
-    let data = { id, nome, autor, editora, anoPublicacao };
+    let data = { id, nome, autor, editora, anoPublicacao, numeroPaginas };
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -88,6 +91,9 @@ function CadastroLivro() {
       setAutor(dados.autor);
       setEditora(dados.editora);
       setAnoPublicacao(dados.anoPublicacao);
+      setNumerPaginas(dados.numeroPaginas);
+
+      
     } catch (error) {
       console.error(error)
       if (error.response && error.response.status === 400){
@@ -150,6 +156,16 @@ function CadastroLivro() {
                   className='form-control'
                   name='anoPublicacao'
                   onChange={(e) => setAnoPublicacao(e.target.value)}
+                />
+              </FormGroup>
+              <FormGroup label='Número de paginas: *' htmlFor='inputPaginas'>
+                <input
+                  type='text'
+                  id='inputPaginas'
+                  value={numeroPaginas}
+                  className='form-control'
+                  name='numeroPaginas'
+                  onChange={(e) => setNumerPaginas(e.target.value)}
                 />
               </FormGroup>
 
