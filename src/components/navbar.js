@@ -26,7 +26,7 @@ function Navbar(props) {
             <NavbarItem render='true' href='#' label='Usuários' />
           </ul>
           <ul className='navbar-nav'>
-            <NavbarItem render='true' href='#' label='Editoras' />
+            <NavbarItem render='true' href='/listagem-editoras' label='Editoras' />
           </ul>
           <ul className='navbar-nav'>
             <NavbarItem render='true' href='/listagem-autores' label='Autores' />

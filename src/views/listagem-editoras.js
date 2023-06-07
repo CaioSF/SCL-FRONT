@@ -16,17 +16,17 @@ import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
 import { BASE_URL } from '../config/axios';
 
-const baseURL = `${BASE_URL}/livros`;
+const baseURL = `${BASE_URL}/editoras`;
 
-function ListagemLivros() {
+function ListagemEditoras() {
   const navigate = useNavigate();
 
   const cadastrar = () => {
-    navigate('/cadastro-livros');
+    navigate(`/cadastro-editoras`);
   };
 
   const editar = (id) => {
-    navigate(`/cadastro-livros/${id}`);
+    navigate(`/cadastro-editoras/${id}`);
   };
 
   const [dados, setDados] = React.useState(null);
@@ -40,7 +40,7 @@ function ListagemLivros() {
         headers: { 'Content-Type': 'application/json' },
       })
       .then(function (response) {
-        mensagemSucesso('Livro excluído com sucesso!');
+        mensagemSucesso(`editora excluído com sucesso!`);
         setDados(
           dados.filter((dado) => {
             return dado.id !== id;
@@ -48,7 +48,7 @@ function ListagemLivros() {
         );
       })
       .catch(function (error) {
-        mensagemErro('Erro ao excluir o livro');
+        mensagemErro(`Erro ao excluira editora`);
       });
   }
 
@@ -62,7 +62,7 @@ function ListagemLivros() {
 
   return (
     <div className='container'>
-      <Card title='Listagem de Livros'>
+      <Card title='Listagem de Editoras'>
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
@@ -71,24 +71,20 @@ function ListagemLivros() {
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
               >
-                Novo Livro
+                Nova editora
               </button>
               <table className='table table-hover'>
                 <thead>
                   <tr>
                     <th scope='col'>Nome</th>
-                    <th scope='col'>Autor</th>
-                    <th scope='col'>Editora</th>
-                    <th scope='col'>Ano de Publicação</th>
-                    <th scope='col'>Ações</th>
+                    
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
                       <td>{dado.nome}</td>
-                      
-                      <td>{dado.anoPublicacao}</td>
+                     
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                           <IconButton
@@ -108,7 +104,7 @@ function ListagemLivros() {
                     </tr>
                   ))}
                 </tbody>
-              </table>{' '}
+              </table>
             </div>
           </div>
         </div>
@@ -117,4 +113,4 @@ function ListagemLivros() {
   );
 }
 
-export default ListagemLivros;
+export default ListagemEditoras;

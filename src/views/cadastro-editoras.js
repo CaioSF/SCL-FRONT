@@ -13,18 +13,16 @@ import '../custom.css';
 import axios from 'axios';
 import { BASE_URL } from '../config/axios';
 
-function CadastroAutor() {
+function CadastroEditora() {
   const { idParam } = useParams();
 
   const navigate = useNavigate();
 
-  const baseURL = `${BASE_URL}/autores`;
+  const baseURL = `${BASE_URL}/editoras`;
 
   const [id, setId] = useState('');
   const [nome, setNome] = useState('');
-  const [nacionalidade, setNacionalidade] = useState('');
-  const [dataNascimento, setDataNascimento] = useState('');
-  
+ 
 
   const [dados, setDados] = React.useState([]);
 
@@ -33,19 +31,16 @@ function CadastroAutor() {
       setId('');
       setNome('');
       
-      setNacionalidade('');
       
     } else {
       setId(dados.id);
       setNome(dados.nome);
-     
-      setNacionalidade(dados.nacionalidade);
-   
+      
     }
   }
 
   async function salvar() {
-    let data = { id, nome, nacionalidade, dataNascimento };
+    let data = { id, nome };
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -53,8 +48,8 @@ function CadastroAutor() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Autor ${nome} cadastrado com sucesso!`);
-          navigate(`/listagem-autores`);
+          mensagemSucesso(`Editora ${nome} cadastrado com sucesso!`);
+          navigate(`/listagem-editoras`);
         })
         .catch(function (error) {
           mensagemErro(error.response.data);
@@ -65,8 +60,8 @@ function CadastroAutor() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Autor ${nome} alterado com sucesso!`);
-          navigate(`/listagem-autores`);
+          mensagemSucesso(`Editora ${nome} alterado com sucesso!`);
+          navigate(`/listagem-editoras`);
         })
         .catch(function (error) {
           mensagemErro(error.response.data);
@@ -82,8 +77,7 @@ function CadastroAutor() {
    
     setId(dados.id);
     setNome(dados.nome);
-    setDataNascimento(dados.dataNascimento);
-    setNacionalidade(dados.nacionalidade);
+    
     
   } catch (error) {
     console.error(error);
@@ -100,48 +94,27 @@ function CadastroAutor() {
   if (!dados) return null;
   return (
     <div className='container'>
-      <Card title='Cadastro de Autor'>
+      <Card title='Cadastro de Editora'>
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-              <FormGroup label='Nome: *' htmlFor='inputNome' >
+              
+              <FormGroup class = "form-select" label='Nome: *' htmlFor='inputNome'>
                 <input
-                required
+                  
                   type='text'
                   id='inputNome'
                   value={nome}
                   className='form-control'
                   name='nome'
-                  minLength={1}
+                  
                   onChange={(e) => setNome(e.target.value)}
                 />
               
              
-              </FormGroup>
-              
-              
-              <FormGroup label='Data de Nascimento: *' htmlFor='inputDataNascimento'>
-                <input
-                  type='date'
-                  id='inputDataNascimento'
-                  value={dataNascimento}
-                  className='form-control'
-                  name='nacionalidade'
-                  min
-                  onChange={(e) => setDataNascimento(e.target.value)}
-
-                />
-              </FormGroup>
-              
-              <FormGroup label='Nacionalidade: *' htmlFor='inputNacionalidade'>
-                <input
-                  type='text'
-                  id='inputNacionalidade'
-                  value={nacionalidade}
-                  className='form-control'
-                  name='nacionalidade'
-                  onChange={(e) => setNacionalidade(e.target.value)}
-                />
+       
+                     
+             
               </FormGroup>
               
               
@@ -169,4 +142,4 @@ function CadastroAutor() {
   );
 }
 
-export default CadastroAutor;
+export default CadastroEditora;

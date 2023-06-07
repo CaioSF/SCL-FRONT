@@ -25,7 +25,7 @@ function CadastroLivro() {
   const [autor, setAutor] = useState('');
   const [editora, setEditora] = useState('');
   const [anoPublicacao, setAnoPublicacao] = useState('');
-  const [numeroPaginas, setNumerPaginas] = useState('');
+  const [numeroPaginas, setNumeroPaginas] = useState('');
 
   const [dados, setDados] = React.useState([]);
 
@@ -36,14 +36,14 @@ function CadastroLivro() {
       setAutor('');
       setEditora('');
       setAnoPublicacao('');
-      setNumerPaginas('');
+      setNumeroPaginas('');
     } else {
       setId(dados.id);
       setNome(dados.nome);
       setAutor(dados.autor);
       setEditora(dados.editora);
       setAnoPublicacao(dados.anoPublicacao);
-      setNumerPaginas(dados.numeroPaginas);
+      setNumeroPaginas(dados.numeroPaginas);
     }
   }
 
@@ -91,7 +91,7 @@ function CadastroLivro() {
       setAutor(dados.autor);
       setEditora(dados.editora);
       setAnoPublicacao(dados.anoPublicacao);
-      setNumerPaginas(dados.numeroPaginas);
+      setNumeroPaginas(dados.numeroPaginas);
 
       
     } catch (error) {
@@ -122,29 +122,12 @@ function CadastroLivro() {
                   value={nome}
                   className='form-control'
                   name='nome'
+                  required
                   onChange={(e) => setNome(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Autor: *' htmlFor='inputAutor'>
-                <input
-                  type='text'
-                  id='inputAutor'
-                  value={autor}
-                  className='form-control'
-                  name='autor'
-                  onChange={(e) => setAutor(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup label='Editora: *' htmlFor='inputEditora'>
-                <input
-                  type='text'
-                  id='inputEditora'
-                  value={editora}
-                  className='form-control'
-                  name='editora'
-                  onChange={(e) => setEditora(e.target.value)}
-                />
-              </FormGroup>
+              
+              
               <FormGroup
                 label='Ano de Publicação: *'
                 htmlFor='inputAnoPublicacao'
@@ -160,12 +143,13 @@ function CadastroLivro() {
               </FormGroup>
               <FormGroup label='Número de paginas: *' htmlFor='inputPaginas'>
                 <input
-                  type='text'
+                  type='int'
                   id='inputPaginas'
                   value={numeroPaginas}
                   className='form-control'
                   name='numeroPaginas'
-                  onChange={(e) => setNumerPaginas(e.target.value)}
+                  minLength={2}
+                  onChange={(e) => setNumeroPaginas(e.target.value)}
                 />
               </FormGroup>
 
