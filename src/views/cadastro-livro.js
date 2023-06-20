@@ -22,33 +22,38 @@ function CadastroLivro() {
 
   const [id, setId] = useState('');
   const [nome, setNome] = useState('');
-  const [autor, setAutor] = useState('');
-  const [editora, setEditora] = useState('');
-  const [anoPublicacao, setAnoPublicacao] = useState('');
+  const [genero, setGenero] = useState('');
+  const [idAutor, setIdAutor] = useState('');
+  const [idEditora, setIdEditora] = useState('');
   const [numeroPaginas, setNumeroPaginas] = useState('');
-
+  const [dataLancamento, setDataLancamento] = useState('');
+  
   const [dados, setDados] = React.useState([]);
 
   function inicializar() {
     if (idParam == null) {
       setId('');
       setNome('');
-      setAutor('');
-      setEditora('');
-      setAnoPublicacao('');
+      setGenero('');
+      setIdAutor('');
+      setIdEditora('');
       setNumeroPaginas('');
+      setDataLancamento('');
+      
     } else {
       setId(dados.id);
       setNome(dados.nome);
-      setAutor(dados.autor);
-      setEditora(dados.editora);
-      setAnoPublicacao(dados.anoPublicacao);
+      setGenero(dados.genero);
+      setIdAutor(dados.idAutor);
+      setIdEditora(dados.idEditora);
       setNumeroPaginas(dados.numeroPaginas);
+      setDataLancamento(dados.dataLancamento);
+      
     }
   }
 
   async function salvar() {
-    let data = { id, nome, autor, editora, anoPublicacao, numeroPaginas };
+    let data = { id, nome, genero, idAutor, idEditora, numeroPaginas, dataLancamento };
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -88,10 +93,12 @@ function CadastroLivro() {
     
       setId(dados.id);
       setNome(dados.nome);
-      setAutor(dados.autor);
-      setEditora(dados.editora);
-      setAnoPublicacao(dados.anoPublicacao);
+      setGenero(dados.genero);
+      setIdAutor(dados.idAutor);
+      setIdEditora(dados.idEditora);
       setNumeroPaginas(dados.numeroPaginas);
+      setDataLancamento(dados.dataLancamento);
+      
 
       
     } catch (error) {
@@ -128,22 +135,51 @@ function CadastroLivro() {
               </FormGroup>
               
               
-              <FormGroup
-                label='Ano de Publicação: *'
-                htmlFor='inputAnoPublicacao'
-              >
+              
+              
+              <FormGroup label='Gênero: *' htmlFor='inputGenero'>
                 <input
-                  type='date'
-                  id='inputAnoPublicacao'
-                  value={anoPublicacao}
+                  type='text'
+                  id='inputGenero'
+                  value={genero}
                   className='form-control'
-                  name='anoPublicacao'
-                  onChange={(e) => setAnoPublicacao(e.target.value)}
+                  name='inputGenero'
+                  minLength={2}
+                  onChange={(e) => setGenero(e.target.value)}
                 />
               </FormGroup>
+
+              <FormGroup label='ID do Autor: *' htmlFor='inputIdAutor'>
+                <input
+                  type='number'
+                  id='inputIdAutor'
+                  value={idAutor}
+                  className='form-control'
+                  name='idAutor'
+                  minLength={1}
+                  
+                  
+                  
+                  
+                  onChange={(e) => setIdAutor(e.target.value)}
+                />
+              </FormGroup>
+
+              <FormGroup label='ID da Editora: *' htmlFor='inputIdEditora'>
+                <input
+                  type='number'
+                  id='inputIdEditora'
+                  value={idEditora}
+                  className='form-control'
+                  name='idEditora'
+                  minLength={1}
+                  onChange={(e) => setIdEditora(e.target.value)}
+                />
+              </FormGroup>
+              
               <FormGroup label='Número de paginas: *' htmlFor='inputPaginas'>
                 <input
-                  type='int'
+                  type='number'
                   id='inputPaginas'
                   value={numeroPaginas}
                   className='form-control'
@@ -152,6 +188,32 @@ function CadastroLivro() {
                   onChange={(e) => setNumeroPaginas(e.target.value)}
                 />
               </FormGroup>
+
+              <FormGroup
+                label='Ano de Publicação: *'
+                htmlFor='inputDataLancamento'
+              >
+                <input
+                  type='datetime'
+                  id='inputDataLancamento'
+                  value={dataLancamento}
+                  className='form-control'
+                  name='dataLancamento'
+                  onChange={(e) => setDataLancamento(e.target.value)}
+                />
+              </FormGroup>
+
+             
+
+
+
+              
+
+              
+
+              
+
+            
 
               <Stack spacing={1} padding={1} direction='row'>
                 <button

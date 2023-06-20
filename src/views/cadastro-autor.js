@@ -23,7 +23,8 @@ function CadastroAutor() {
   const [id, setId] = useState('');
   const [nome, setNome] = useState('');
   const [nacionalidade, setNacionalidade] = useState('');
-  const [dataNascimento, setDataNascimento] = useState('');
+ 
+ 
   
 
   const [dados, setDados] = React.useState([]);
@@ -32,20 +33,22 @@ function CadastroAutor() {
     if (idParam == null) {
       setId('');
       setNome('');
-      
       setNacionalidade('');
+     
+      
       
     } else {
       setId(dados.id);
       setNome(dados.nome);
-     
       setNacionalidade(dados.nacionalidade);
+     
+      
    
     }
   }
 
   async function salvar() {
-    let data = { id, nome, nacionalidade, dataNascimento };
+    let data = { id, nome, nacionalidade};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -82,8 +85,9 @@ function CadastroAutor() {
    
     setId(dados.id);
     setNome(dados.nome);
-    setDataNascimento(dados.dataNascimento);
     setNacionalidade(dados.nacionalidade);
+   
+  
     
   } catch (error) {
     console.error(error);
@@ -120,18 +124,7 @@ function CadastroAutor() {
               </FormGroup>
               
               
-              <FormGroup label='Data de Nascimento: *' htmlFor='inputDataNascimento'>
-                <input
-                  type='date'
-                  id='inputDataNascimento'
-                  value={dataNascimento}
-                  className='form-control'
-                  name='nacionalidade'
-                  min
-                  onChange={(e) => setDataNascimento(e.target.value)}
-
-                />
-              </FormGroup>
+              
               
               <FormGroup label='Nacionalidade: *' htmlFor='inputNacionalidade'>
                 <input
@@ -143,6 +136,8 @@ function CadastroAutor() {
                   onChange={(e) => setNacionalidade(e.target.value)}
                 />
               </FormGroup>
+
+             
               
               
               <Stack spacing={1} padding={1} direction='row'>

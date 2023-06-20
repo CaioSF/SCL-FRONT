@@ -22,6 +22,7 @@ function CadastroEditora() {
 
   const [id, setId] = useState('');
   const [nome, setNome] = useState('');
+  
  
 
   const [dados, setDados] = React.useState([]);
@@ -30,11 +31,13 @@ function CadastroEditora() {
     if (idParam == null) {
       setId('');
       setNome('');
+     
       
       
     } else {
       setId(dados.id);
       setNome(dados.nome);
+      
       
     }
   }
@@ -77,6 +80,7 @@ function CadastroEditora() {
    
     setId(dados.id);
     setNome(dados.nome);
+   
     
     
   } catch (error) {
@@ -116,6 +120,15 @@ function CadastroEditora() {
                      
              
               </FormGroup>
+
+             
+              
+             
+       
+                     
+             
+             
+              
               
               
               <Stack spacing={1} padding={1} direction='row'>

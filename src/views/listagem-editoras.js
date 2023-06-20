@@ -77,6 +77,7 @@ function ListagemEditoras() {
                 <thead>
                   <tr>
                     <th scope='col'>Nome</th>
+                    <th scope='col'>ID da Editora</th>
                     
                   </tr>
                 </thead>
@@ -84,6 +85,8 @@ function ListagemEditoras() {
                   {dados.map((dado) => (
                     <tr key={dado.id}>
                       <td>{dado.nome}</td>
+                      <td>{dado.id}</td>
+                      
                      
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
