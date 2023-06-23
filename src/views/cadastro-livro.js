@@ -12,11 +12,14 @@ import '../custom.css';
 
 import axios from 'axios';
 import { BASE_URL } from '../config/axios';
+import { NoMeals } from '@mui/icons-material';
 
 function CadastroLivro() {
   const { idParam } = useParams();
 
   const navigate = useNavigate();
+
+
 
   const baseURL = `${BASE_URL}/livros`;
 
@@ -27,6 +30,8 @@ function CadastroLivro() {
   const [idEditora, setIdEditora] = useState('');
   const [numeroPaginas, setNumeroPaginas] = useState('');
   const [dataLancamento, setDataLancamento] = useState('');
+
+
   
   const [dados, setDados] = React.useState([]);
 
@@ -82,6 +87,8 @@ function CadastroLivro() {
     }
   }
 
+  
+
   async function buscar() {
     try {
       await axios.get(`${baseURL}/${idParam}`).then((response)=>{
@@ -109,11 +116,33 @@ function CadastroLivro() {
   }
   }
 
+  
+  const [dadosAutores, setDadosAutores] = React.useState(null);
+
+  useEffect(() => {
+    axios.get(`${BASE_URL}/autores`).then((response) => {
+      setDadosAutores(response.data);
+    });
+  }, []);
+
+  const [dadosEditoras, setDadosEditora] = React.useState(null);
+
+  useEffect(() => {
+    axios.get(`${BASE_URL}/editoras`).then((response) => {
+      setDadosEditora(response.data);
+    });
+  }, []);
+
+
   useEffect(() => {
     buscar(); 
   }, [id]);
 
   if (!dados) return null;
+  if (!dadosAutores) return null;
+  if (!dadosEditoras) return null;
+
+ 
 
 
   return (
@@ -149,32 +178,43 @@ function CadastroLivro() {
                 />
               </FormGroup>
 
-              <FormGroup label='ID do Autor: *' htmlFor='inputIdAutor'>
-                <input
-                  type='number'
-                  id='inputIdAutor'
-                  value={idAutor}
-                  className='form-control'
+              
+              <FormGroup label='Autor:' htmlFor='selectAutor'>
+                <select
+                  className='form-select'
+                  id='selectAutor'
                   name='idAutor'
-                  minLength={1}
-                  
-                  
-                  
-                  
+                  value={idAutor}
                   onChange={(e) => setIdAutor(e.target.value)}
-                />
+                >
+                  <option key='0' value='0'>
+                    {' '}
+                  </option>
+                  {dadosAutores.map((dado) => (
+                    <option key={dado.id} value={dado.id}>
+                      {dado.nome}
+                    </option>
+                  ))}
+                </select>
               </FormGroup>
-
-              <FormGroup label='ID da Editora: *' htmlFor='inputIdEditora'>
-                <input
-                  type='number'
-                  id='inputIdEditora'
-                  value={idEditora}
-                  className='form-control'
+              
+              <FormGroup label='Editoras:' htmlFor='selecEditora'>
+                <select
+                  className='form-select'
+                  id='selecEditora'
                   name='idEditora'
-                  minLength={1}
+                  value={idEditora}
                   onChange={(e) => setIdEditora(e.target.value)}
-                />
+                >
+                  <option key='0' value='0'>
+                    {' '}
+                  </option>
+                  {dadosEditoras.map((dado) => (
+                    <option key={dado.id} value={dado.id}>
+                      {dado.nome}
+                    </option>
+                  ))}
+                </select>
               </FormGroup>
               
               <FormGroup label='Número de paginas: *' htmlFor='inputPaginas'>

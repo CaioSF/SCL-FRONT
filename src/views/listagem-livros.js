@@ -78,8 +78,8 @@ function ListagemLivros() {
                   <tr>
                     <th scope='col'>Nome</th>
                     <th scope='col'>Gênero</th>
-                    <th scope='col'>ID do Autor</th>
-                    <th scope='col'>ID da Editora</th>
+                    <th scope='col'>Autor</th>
+                    <th scope='col'>Editora</th>
                     <th scope='col'>Número de páginas</th>
                     <th scope='col'>Ano de Publicação</th>
                     <th scope='col'>Ações</th>
@@ -92,8 +92,8 @@ function ListagemLivros() {
                     <tr key={dado.id}>
                       <td>{dado.nome}</td>
                       <td>{dado.genero}</td>
-                      <td>{dado.idAutor}</td>
-                      <td>{dado.idEditora}</td>
+                      <td>{dado.nomeAutor}</td>
+                      <td>{dado.nomeEditora}</td>
                       <td>{dado.numeroPaginas}</td>
                       <td>{dado.dataLancamento}</td>
 
